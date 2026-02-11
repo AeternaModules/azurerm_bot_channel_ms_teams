@@ -1,5 +1,5 @@
-output "bot_channel_ms_teamss" {
+output "bot_channel_ms_teamses" {
   description = "All bot_channel_ms_teams resources"
-  value       = azurerm_bot_channel_ms_teams.bot_channel_ms_teamss
+  value       = azurerm_bot_channel_ms_teams.bot_channel_ms_teamses
 }
 

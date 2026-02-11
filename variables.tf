@@ -1,6 +1,6 @@
-variable "bot_channel_ms_teamss" {
+variable "bot_channel_ms_teamses" {
   description = <<EOT
-Map of bot_channel_ms_teamss, attributes below
+Map of bot_channel_ms_teamses, attributes below
 Required:
     - bot_name
     - location
@@ -18,7 +18,7 @@ EOT
     resource_group_name    = string
     calling_enabled        = optional(bool)
     calling_web_hook       = optional(string)
-    deployment_environment = optional(string, "CommercialDeployment")
+    deployment_environment = optional(string) # Default: "CommercialDeployment"
     enable_calling         = optional(bool)
   }))
 }

@@ -1,5 +1,5 @@
-resource "azurerm_bot_channel_ms_teams" "bot_channel_ms_teamss" {
-  for_each = var.bot_channel_ms_teamss
+resource "azurerm_bot_channel_ms_teams" "bot_channel_ms_teamses" {
+  for_each = var.bot_channel_ms_teamses
 
   bot_name               = each.value.bot_name
   location               = each.value.location
