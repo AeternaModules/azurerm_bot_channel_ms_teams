@@ -1,33 +1,29 @@
-output "bot_channel_ms_teamses" {
-  description = "All bot_channel_ms_teams resources"
-  value       = azurerm_bot_channel_ms_teams.bot_channel_ms_teamses
-}
 output "bot_channel_ms_teamses_bot_name" {
-  description = "List of bot_name values across all bot_channel_ms_teamses"
-  value       = [for k, v in azurerm_bot_channel_ms_teams.bot_channel_ms_teamses : v.bot_name]
+  description = "Map of bot_name values across all bot_channel_ms_teamses, keyed the same as var.bot_channel_ms_teamses"
+  value       = { for k, v in azurerm_bot_channel_ms_teams.bot_channel_ms_teamses : k => v.bot_name }
 }
 output "bot_channel_ms_teamses_calling_enabled" {
-  description = "List of calling_enabled values across all bot_channel_ms_teamses"
-  value       = [for k, v in azurerm_bot_channel_ms_teams.bot_channel_ms_teamses : v.calling_enabled]
+  description = "Map of calling_enabled values across all bot_channel_ms_teamses, keyed the same as var.bot_channel_ms_teamses"
+  value       = { for k, v in azurerm_bot_channel_ms_teams.bot_channel_ms_teamses : k => v.calling_enabled }
 }
 output "bot_channel_ms_teamses_calling_web_hook" {
-  description = "List of calling_web_hook values across all bot_channel_ms_teamses"
-  value       = [for k, v in azurerm_bot_channel_ms_teams.bot_channel_ms_teamses : v.calling_web_hook]
+  description = "Map of calling_web_hook values across all bot_channel_ms_teamses, keyed the same as var.bot_channel_ms_teamses"
+  value       = { for k, v in azurerm_bot_channel_ms_teams.bot_channel_ms_teamses : k => v.calling_web_hook }
 }
 output "bot_channel_ms_teamses_deployment_environment" {
-  description = "List of deployment_environment values across all bot_channel_ms_teamses"
-  value       = [for k, v in azurerm_bot_channel_ms_teams.bot_channel_ms_teamses : v.deployment_environment]
+  description = "Map of deployment_environment values across all bot_channel_ms_teamses, keyed the same as var.bot_channel_ms_teamses"
+  value       = { for k, v in azurerm_bot_channel_ms_teams.bot_channel_ms_teamses : k => v.deployment_environment }
 }
 output "bot_channel_ms_teamses_enable_calling" {
-  description = "List of enable_calling values across all bot_channel_ms_teamses"
-  value       = [for k, v in azurerm_bot_channel_ms_teams.bot_channel_ms_teamses : v.enable_calling]
+  description = "Map of enable_calling values across all bot_channel_ms_teamses, keyed the same as var.bot_channel_ms_teamses"
+  value       = { for k, v in azurerm_bot_channel_ms_teams.bot_channel_ms_teamses : k => v.enable_calling }
 }
 output "bot_channel_ms_teamses_location" {
-  description = "List of location values across all bot_channel_ms_teamses"
-  value       = [for k, v in azurerm_bot_channel_ms_teams.bot_channel_ms_teamses : v.location]
+  description = "Map of location values across all bot_channel_ms_teamses, keyed the same as var.bot_channel_ms_teamses"
+  value       = { for k, v in azurerm_bot_channel_ms_teams.bot_channel_ms_teamses : k => v.location }
 }
 output "bot_channel_ms_teamses_resource_group_name" {
-  description = "List of resource_group_name values across all bot_channel_ms_teamses"
-  value       = [for k, v in azurerm_bot_channel_ms_teams.bot_channel_ms_teamses : v.resource_group_name]
+  description = "Map of resource_group_name values across all bot_channel_ms_teamses, keyed the same as var.bot_channel_ms_teamses"
+  value       = { for k, v in azurerm_bot_channel_ms_teams.bot_channel_ms_teamses : k => v.resource_group_name }
 }
 
