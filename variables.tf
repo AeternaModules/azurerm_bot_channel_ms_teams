@@ -21,33 +21,46 @@ EOT
     deployment_environment = optional(string)
     enable_calling         = optional(bool)
   }))
-  # --- Unconfirmed validation candidates, derived from azurerm_bot_channel_ms_teams's provider source ---
-  # Not auto-enabled: either a bespoke provider validator we can't safely translate,
-  # or a path that crosses a list-typed block (needs its own for_each wrapping).
-  # Review, translate into a real validation{} block above, and delete once confirmed.
-  # path: resource_group_name
-  #   condition: length(value) <= 90
-  #   message:   [from resourcegroups.ValidateName: invalid when len(value) > 90]
-  #   source:    [from resourcegroups.ValidateName: invalid when len(value) > 90]
-  # path: resource_group_name
-  #   condition: !endswith(value, ".")
-  #   message:   [from resourcegroups.ValidateName: must not end with "."]
-  #   source:    [from resourcegroups.ValidateName: must not end with "."]
-  # path: resource_group_name
-  #   condition: length(value) != 0
-  #   message:   [from resourcegroups.ValidateName: invalid when len(value) == 0]
-  #   source:    [from resourcegroups.ValidateName: invalid when len(value) == 0]
-  # path: resource_group_name
-  #   source:    [from resourcegroups.ValidateName] !matched
-  # path: location
-  #   source:    location.EnhancedValidate: no recognizable `if ... { errors = append(...) }` pattern - read it by hand
-  # path: bot_name
-  #   condition: length(value) > 0
-  #   message:   must not be empty
-  # path: calling_web_hook
-  #   source:    validate.BotMSTeamsCallingWebHook: no recognizable `if ... { errors = append(...) }` pattern - read it by hand
-  # path: deployment_environment
-  #   condition: contains(["CommercialDeployment", "GCCModerateDeployment"], value)
-  #   message:   must be one of: CommercialDeployment, GCCModerateDeployment
+  validation {
+    condition = alltrue([
+      for k, v in var.bot_channel_ms_teams : (
+        length(v.resource_group_name) <= 90
+      )
+    ])
+    error_message = "[from resourcegroups.ValidateName: invalid when len(value) > 90]"
+  }
+  validation {
+    condition = alltrue([
+      for k, v in var.bot_channel_ms_teams : (
+        !endswith(v.resource_group_name, ".")
+      )
+    ])
+    error_message = "[from resourcegroups.ValidateName: must not end with \".\"]"
+  }
+  validation {
+    condition = alltrue([
+      for k, v in var.bot_channel_ms_teams : (
+        length(v.resource_group_name) != 0
+      )
+    ])
+    error_message = "[from resourcegroups.ValidateName: invalid when len(value) == 0]"
+  }
+  validation {
+    condition = alltrue([
+      for k, v in var.bot_channel_ms_teams : (
+        length(v.bot_name) > 0
+      )
+    ])
+    error_message = "must not be empty"
+  }
+  validation {
+    condition = alltrue([
+      for k, v in var.bot_channel_ms_teams : (
+        v.deployment_environment == null || (contains(["CommercialDeployment", "GCCModerateDeployment"], v.deployment_environment))
+      )
+    ])
+    error_message = "must be one of: CommercialDeployment, GCCModerateDeployment"
+  }
+  # Note: 3 additional provider-side validators are enforced at apply time but not mirrored as validation{} blocks here (bespoke or non-mechanically-translatable).
 }
 
