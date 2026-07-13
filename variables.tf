@@ -18,7 +18,7 @@ EOT
     resource_group_name    = string
     calling_enabled        = optional(bool)
     calling_web_hook       = optional(string)
-    deployment_environment = optional(string) # Default: "CommercialDeployment"
+    deployment_environment = optional(string)
     enable_calling         = optional(bool)
   }))
   # --- Unconfirmed validation candidates, derived from azurerm_bot_channel_ms_teams's provider source ---
